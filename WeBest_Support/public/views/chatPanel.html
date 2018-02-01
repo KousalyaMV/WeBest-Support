@@ -1,0 +1,119 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+
+ element.style {
+        margin: 0px;
+    }
+.container {
+        padding: 2px 16px;
+    }
+    .Qbox{
+        padding-top:70px;
+    }
+</style>
+<div ng-controller="singleCtrl as single">
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <div class="container">
+            <a class="navbar-brand" href=""><i class="fa fa-ticket" aria-hidden="true"></i> WeBest Support DashBoard</a>
+            <div class="collapse navbar-collapse pull-right" id="navbarExample">
+            </div>
+           
+            <ul align="right" class="nav navbar-nav pull-right">
+          <button align="right" type="button"  style="margin:0px" class="btn btn-logged btn-primary dropdown-toggle" ng-init="single.getName()" id="logout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   {{single.user}}<span class="caret"></span></button>
+
+          <ul  class="dropdown-menu">
+            <li align="center"><a href="" ng-click="single.logout()"><h4 style="color:black;font-family:bold;width: 200px;">Logout</h4></a></li>
+          </ul>
+        </ul>
+         
+      </div>
+</nav>
+    <br/>
+    <br/>
+
+<div class="Qbox">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-10 col-md-offset-10 col-md-10 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10 text" id="query">
+                <div id="title">
+                    <h2 align="center">Query Details:</h2>
+                </div>
+                <hr> Posted By<span style="color:blue"> {{single.sender}}</span>
+                <div class="datetime">{{single.date | date: "MMM dd,y"}} at {{single.date | date: "HH:mm"}}</div>
+                <label style="color:black; font-family:bold; font-size: 1.5em;" align="center">Query Title: 
+                {{single.title}}</label> <br>
+                <label style="color:black; font-family: bold; font-size: 1.2em;" align="center">Query Details: 
+                        {{single.Details}}</label><br>
+                <hr size="30%">
+            </div>
+            <div>
+                <div  id="btnChangeStatus">
+                   &nbsp; &nbsp;<button align="center" ng-if="single.userId == single.userID || single.user == 'Admin'" class="btn btn-primary btn-xs" ng-click="single.openclose()">{{single.getStatus()}}</button>
+                    <a href="#" align="center" class="btn btn-primary" title="Previous Page" onclick="history.go(-1);event.preventDefault();">Go Back</a>
+                </div>
+                <br/>
+                <h4 ng-if="single.messages.length>0" align="center">Reply To Query</h4>
+                <br/>
+            </div>
+        <hr/>
+<div class="col-lg-offset-2 col-lg-10 col-md-offset-10 col-md-10 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10 text">
+        <ul ng-repeat="message in single.messages">
+            <li ng-class="{'message':{{message.sender !== 'Admin'}} , 'messageadmin': {{message.sender === 'Admin'}} }" id="scrollB">
+                    <div class="card">
+                            <div class="msgtext">
+                                <ng-avatar initials="{{message.sender[0]}}" bg-color="green" text-color="white" round-shape="true"> </ng-avatar>Posted By<span style="color:blue"> {{message.sender}}</span></div>
+                            <div class="datetime">{{message.createdAt | date: "MMM dd,y"}} at {{message.createdAt | date: "HH:mm"}}</div>
+                            <br/>
+
+                            <div class="msgtext">Message: {{message.queryText}} </div>
+                            <br/>
+                    </div>
+            </li>
+        </ul>
+</div>
+        <form id="replyform" ng-submit="single.createMessage()">
+                    <div class="col-lg-offset-2 col-lg-10 col-md-offset-10 col-md-10 col-sm-offset-2 col-sm-8 col-xs-offset-2 col-xs-10">
+                        <label style="color:black; font-family: bold; font-size: 1.5em;">Reply Message:</label>
+                        <div class="w3-container w3-section">
+                            <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
+                            <div class="w3-rest">
+                                <input id="messageText" class="w3-input w3-border w3-round-large" type="text" name="queryText" placeholder="Message..." ng-model="single.queryText" required="true">
+                            </div>
+                        </div>
+
+                    </div>
+                    <br/>
+
+                    <div id="sendButton" class=" col-lg-2 col-md-2  col-sm-2  col-xs-2 text text-center">
+                        <button align="center" id="sendbtn" type="submit" name="send" value="send" class="btn btn-primary btn-success btn-xs">Reply To Query</button>
+                    </div>
+                    <br/>
+        </form>
+    </div>
+</div>
+<hr>
+</div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="bg-inverse footerclass">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; WeBest Support @ 2018</p>
+        <p Class="m-0 text-center text-white">Created By Kousalya MV</p>
+    </div>
+    <br/>
+    <div class="col-lg-12">
+        <h4 align="center" style="color: white;">Connect With Me:</h4>
+        <div align="center" class="footer-social">
+            <a href="https://github.com/kousalyamv" target="_blank"><i style="color:white;" class="fa fa-github fa-fw fa-2x"></i></a> &nbsp;&nbsp;
+            <a href="https://www.linkedin.com/in/kousalya-m-v-8072a4a2/" target="_blank"><i style="color:white;" class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+</footer>
+<script type="text/javascript">
+    // <![CDATA[
+    function goBack() {
+           window.history.back();
+           return false;
+                    }
+</script>
