@@ -1,7 +1,7 @@
 # WeBest-Support
 Its an online ticket based support system 
 
-## Live Link: http://ec2-35-154-114-105.ap-south-1.compute.amazonaws.com/#/
+## Live Link: http://ec2-35-154-114-105.ap-south-1.compute.amazonaws.com
 
 ## WeBestSupport System (SPA) Using MEAN STACK
 
@@ -30,6 +30,10 @@ Access to admin panel can done using an account with following credentials -
 name : Admin 
 email : admin@domain.com 
 Password can be given as per user wish.
+
+## Live Login
+Email:admin@webestsupport.com
+Password:pass
 
 ## Prerequisites of using this application -
 1. nodejs  
